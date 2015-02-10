@@ -1,0 +1,12 @@
+
+RewriteEngine on
+
+AuthName "rsl"
+AuthUserFile "/home/vanheb5/.htpasswds/public_html/rsl/passwd"
+RewriteCond %{HTTP_HOST} ^rsl\.vanhebron\.ca$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.rsl\.vanhebron\.ca$
+RewriteRule ^/?$ "http\:\/\/www\.vanhebron\.ca\/rsl\/" [R=301,L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([^/]*)/([^/]*)$ $1.html#$2

@@ -1,0 +1,4 @@
+# first line must not contain any rules
+/*.gif
+images/*
+working_files/*

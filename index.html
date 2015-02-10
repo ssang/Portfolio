@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+
+	<!-- Basic Page Needs ================================================== -->
+	<meta charset="utf-8">
+	<title>Robert Lee - Developer</title>
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+	<!-- Mobile Specific Metas ================================================== -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<!-- CSS ================================================== -->
+  	<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+  	<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400' rel='stylesheet' type='text/css'>
+  	<link href='http://fonts.googleapis.com/css?family=Lato:100,300italic,300' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="stylesheets/base.css">
+	<link rel="stylesheet" href="stylesheets/skeleton.css">
+	<link rel="stylesheet" href="stylesheets/layout.css">
+
+	<!--[if lt IE 9]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<!-- Favicons ==================================================
+	<link rel="shortcut icon" href="images/favicon.ico">
+	<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+	-->
+
+	<!-- JS ================================================== -->
+
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="js/script.js"></script>
+	<script src="js/waypoints.min.js"></script>
+	<script>
+	$(document).ready(function(){
+
+		$(function() {
+
+			var sections = $(".content_section");
+			var navigation_links = $(".scrollTo");
+
+			sections.waypoint({
+				handler: function(event, direction) {
+
+					var active_section;
+					active_section = $(this);
+					if (direction === "up") active_section = active_section.prev();
+
+					var active_link = $('nav a[href="#' + active_section.attr("id") + '"]');
+
+					navigation_links.removeClass("active");
+					active_link.addClass("active");
+
+				},
+				offset: 100
+			});
+		});
+
+		$('a.scrollTo').click(function(e){
+			e.preventDefault();
+			var section = $(this).attr('rel');
+			var secOffset = $("#" + section).offset().top;
+			secOffset -= 65;
+			$('html, body').animate({scrollTop: secOffset}, 400);
+		});
+
+		$("#explore").click(function(e){
+			e.preventDefault();
+			var section = "about";
+			var secOffset = $("#" + section).offset().top;
+			secOffset -= 65;
+			$('html, body').animate({scrollTop: secOffset}, 400);
+			$(".active").removeClass("active");
+			$("#about_link").addClass("active");
+		});
+		$(window).scroll(function() {
+			if($('.about_num').children("h1").html() == "0") {
+				if($('.about_num').isOnScreen(1, 0.5) == true) {
+					var curNum;
+					var timer = setInterval(function(){
+						$('.about_num').each(function() {
+							curNum = Math.floor((Math.random() * 1000) + 1);
+							$(this).children("h1").html(curNum);
+						});
+					}, 100);
+					setTimeout(function() {
+						clearInterval( timer );
+						$('.about_num').each(function() {
+							var about_num = $(this).attr("num");
+							$(this).children("h1").html(about_num);
+						});
+					}, 1000)
+				}
+			}
+		}).scroll();
+
+		$('.projCarousel').projCarousel();
+
+	});
+	</script>
+</head>
+<body>
+<!-- Primary Page Layout ================================================== -->
+
+<nav>
+	<div class="overlay overlay-slide">
+		<ul class="container">
+			<li><a href="#home_header" rel="home_header" class="active scrollTo">robert lee</a></li>
+			<li><a href="#about" rel="about" id="about_link" class="scrollTo">about me</a></li>
+			<li><a href="#projects" rel="projects" class="scrollTo">my projects</a></li>
+			<li><a href="#services" rel="services" class="scrollTo">services</a></li>
+			<li><a href="#contact" rel="contact" class="scrollTo">contact</a></li>
+			<br class="clear" />
+		</ul>
+	</div>
+	<div class="hamburger"><a href="#" class="hamburgerBtn"><img src="images/hamburger.png" /></a></div>
+</nav>
+
+<header id="home_header" class="content_section animate" secttype="page" data-0="background-position:0px 0px;" data-1000="background-position:0px -500px;">
+	<div class="header_spacer"></div>
+	<h1>developer</h1>
+	<h2>making the web look sharp</h2>
+
+	<div class="button explore">
+		<h2><a href="#about" id="explore">explore</a></h2>
+		<span></span>
+	</div>
+</header>
+
+<section id="about" class="content_section" secttype="page">
+	<div class="container">
+		<h1 class="content_header">about me</h1>
+		<p>
+			I am a 22 year old Korean boy born in Winnipeg, Manitoba. Now I'm living in Langley, BC. I am currently studying at Simon Fraser University as a Computer Science major. My main point of interest is web-development and more specifically backend management. I recently finished the Techinical Web Designer program at BCIT and have fully put my foot into the web development world.
+		</p>
+		<p>
+			When I'm not staring intensly at page full of code and markup, I may still be staring at the computer screen "clearing my mind" with a game or browsing the internet. When I'm actually away from my keyboard, I'm usually found taking walks or hanging out with friends playing a game of basketball or volleybal. I'm a big dog lover, and very much enjoy going for long drives. I am a follower of Christ and have been raised in the church for the entirety of my life. I currently attend Vancouver Hebron Presbyterian Church.
+		</p>
+		<div class="one-third column about_num" num="85">
+			<h1>0</h1>
+			<h2>minutes a day researching new trends</h2>
+		</div>
+		<div class="one-third column about_num" num="3">
+			<h1>0</h1>
+			<h2>siblings that annoy me</h2>
+		</div>
+		<div class="one-third column about_num" num="861">
+			<h1>0</h1>
+			<h2>coding minutes per week</h2>
+		</div>
+	</div>
+	<div class="page_breakers break_first" id="breaker1" secttype="page_breaker">
+		<div class="container breaker">
+			<div class="thirteen columns breaker_inner offset-by-three">
+				<p>
+					Whatever you do, work heartily, as for the Lord and not for men, knowing that from the Lord you will receive the inheritance as your reward. You are serving the Lord Christ.
+				</p>
+				<p>—Colossians 3:23-24</p>
+			</div>
+			<br class="clear" />
+		</div>
+	</div>
+</section>
+<section id="projects" class="content_section" secttype="page">
+	<div class="container">
+		<h1 class="content_header">my projects</h1>
+		<p>
+			Take a look at some of my past work. Hopefully your new website will be on this list soon.
+		</p>
+		<div class="projCarousel">
+			<div class="projWrapper">
+				<ul>
+					<li class="one-third column">
+						<a href="/projects/chaney" class="projLink one-third column alpha omega">
+							<img src="images/chaney.png">
+							<h1>Deb Chaney</h1>
+						</a>
+					</li>
+					<li class="one-third column">
+						<a href="/projects/britton" class="projLink one-third column alpha omega">
+							<img src="images/britton.png">
+							<h1>Britton Living</h1>
+						</a>
+					</li>
+					<li class="one-third column">
+						<a href="/projects/ibs" class="projLink one-third column alpha omega">
+							<img src="images/ibs.png">
+							<h1>IBS Beauty</h1>
+						</a>
+					</li>
+					<li class="one-third column">
+						<a href="/projects/hebron" class="projLink one-third column alpha omega">
+							<img src="images/hebron.png">
+							<h1>Hebron Church</h1>
+						</a>
+					</li>
+				</ul>
+			</div>
+			<a href="#" class="arrow forward">Forward</a>
+			<a href="#" class="arrow back">Back</a>
+		</div>
+	</div>
+	<div class="page_breakers break_second" id="breaker2" secttype="page_breaker">
+		<div class="container breaker">
+			<div class="thirteen columns breaker_inner offset-by-three">
+				<p>
+					One of my most productive days was throwing away 1000 lines of code
+				</p>
+				<p>—Ken Thompson</p>
+			</div>
+			<br class="clear" />
+		</div>
+	</div>
+</section>
+<section id="services" class="content_section" secttype="page">
+	<div class="container">
+		<h1 class="content_header">Services</h1>
+		<p>
+			There's nothing more enjoyable for me in this line of work than pushing myself to learn something new. This is an ever advancing field, and the only way to stay competitive is to be advancing my skillsets as well. Taking that motivation, I try hard to keep my skills up to date with this fast-paced industry.
+		</p>
+		<p>
+			One thing is for certain, I am not a designer in that I am not able to give you a fresh new look for your website. But I do have many opinions when it comes to design and User Experience. In terms of skillsets that I offer, PHP and MySQL integration is my main focus. HTML, CSS and Javascript (along with jQuery) for front-end work is also something that I am proficient in. Lastly, Wordpress is something that been recently added to my repitoire, and I can now take your design and turn that into a working Wordpress Template.
+		</p>
+	</div>
+</section>
+
+<section id="contact" class="content_section" secttype="page">
+	<div class="page_breakers break_third" id="breaker3" secttype="page_breaker">
+		<div class="container breaker">
+			<div class="thirteen columns breaker_inner offset-by-three">
+				<p>
+					measuring programming progress by lines of code is like measuring aircraft building progress by weight
+				</p>
+				<p>—bill gates</p>
+			</div>
+			<br class="clear" />
+		</div>
+	</div>
+	<div class="container">
+		<h1>contact me</h1>
+		<p>
+			For information regarding my services or comments please fill out the form below and I will get back to you as soon as possible.
+		</p>
+		<div class="two-thirds column my_pic">
+			<img src="images/me.jpg" alt="Robert Lee" />
+		</div>
+		<div class="one-third column contact_form">
+			<label for="first_name">First</label>
+			<input type="text" value="First" name="first_name" id="first_name" class="contact_field" />
+
+			<label for="last_name">Last</label>
+			<input type="text" value="Last" name="last_name" id="last_name" class="contact_field" />
+
+			<label for="contact_email">Email</label>
+			<input type="text" value="Email" name="email" id="contact_email" class="contact_field" />
+
+			<label for="subject">Subject</label>
+			<input type="text" value="Subject" name="subject" id="subject" class="contact_field" />
+
+			<label for="comments">Comments</label>
+			<textarea name="comments" id="comments" class="contact_field">Comments</textarea>
+
+			<div class="button submit">
+				<h2><a href="#contact" id="submit_btn">submit</a></h2>
+				<span></span>
+			</div>
+			<div class="error"></div>
+		</div>
+	</div>
+</section>
+
+<footer>
+	<div class="container">
+		<div class="one-third column">
+			<p id="copyright">&copy; Copyright Robert Lee 2013</p>
+		</div>
+		<div class="two-thirds column footer_nav">
+			<ul>
+				<li><a href="#home_header" rel="home_header" class="scrollTo">home</a></li>
+				<li>//</li>
+				<li><a href="#about" rel="about" class="scrollTo">about me</a></li>
+				<li>//</li>
+				<li><a href="#projects" rel="projects" class="scrollTo">my projects</a></li>
+				<li>//</li>
+				<li><a href="#services" rel="services" class="scrollTo">services</a></li>
+				<li>//</li>
+				<li><a href="#contact" rel="contact" class="scrollTo">contact</a></li>
+				<br class="clear" />
+			</ul>
+		</div>
+	</div>
+</footer>
+<!-- End Document ================================================== -->
+</body>
+</html>
